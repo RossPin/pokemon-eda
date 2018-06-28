@@ -1,12 +1,12 @@
 const path = require('path')
 const express = require('express')
 
-const fruitRoutes = require('./routes/fruits')
+const pokemonRoutes = require('./routes/pokemon')
 
 const server = express()
 
 server.use(express.static(path.join(__dirname, 'public')))
 
-server.use('/api/v1/fruits', fruitRoutes)
+server.use('/api/pokemon', pokemonRoutes)
 
 module.exports = server
