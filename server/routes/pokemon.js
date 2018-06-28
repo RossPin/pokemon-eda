@@ -7,7 +7,7 @@ const router = express.Router()
 
 router.get('/types', (req, res) => {
   const types = pokemon.getTypes()
-  res.json(types)    
+  res.json({types})    
 })
 
 router.get('/types/:type', (req, res) => {
