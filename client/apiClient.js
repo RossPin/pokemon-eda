@@ -1,10 +1,17 @@
 import request from 'superagent'
 
-const rootUrl = '/api/v1'
+const rootUrl = '/api/pokemon'
 
-export function getFruits () {
-  return request.get(rootUrl + '/fruits')
+export function getTypes () {
+  return request.get(rootUrl + '/types')
     .then(res => {
-      return res.body.fruits
+      return res.body.types
+    })
+}
+
+export function getByType (type) {
+  return request.get(rootUrl + '/types/'+type)
+    .then(res => {
+      return res.body
     })
 }
