@@ -3,7 +3,7 @@ import React from 'react'
 import { getTypes, getByType } from '../apiClient'
 
 class Results extends React.Component {
-    constuctor(props) {
+    constructor(props) {
         super(props)
     }
 
@@ -103,4 +103,6 @@ class Results extends React.Component {
         )
     }
 }
+
+export default Results
 

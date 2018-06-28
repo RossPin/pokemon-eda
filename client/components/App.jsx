@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Home from './Home'
+import Results from './Results'
 
 class App extends React.Component {
 
@@ -18,6 +19,7 @@ class App extends React.Component {
   }
 
   updateState(state) {
+    state.userSubmitted = true
     console.log(state)
     this.setState(state)
   }
@@ -25,7 +27,8 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Home updateState={this.updateState} />
+        {!this.state.userSubmitted && <Home updateState={this.updateState} />}
+        {this.state.userSubmitted && <Results {...this.state}/>}
       </div>
     )
   }
