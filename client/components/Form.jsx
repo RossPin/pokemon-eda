@@ -3,10 +3,14 @@ import React from 'react'
 class Form extends React.Component {
     constructor(props) {
         super(props)
+
         this.state = {
             name: '',
             type: ''
         }
+
+        this.handleChange = this.handleChange.bind(this)
+        this.submitButton = this.submitButton.bind(this)
 
     }
 
@@ -14,8 +18,11 @@ class Form extends React.Component {
     handleChange(e) {
         const state = this.state
         state[e.target.name] = e.target.value
-        console.log(state)
-        this.setState(state)
+    }
+
+    submitButton(e) {
+        e.preventDefault()
+        this.props.updateState(this.state)
     }
 
 
@@ -23,7 +30,7 @@ class Form extends React.Component {
         return (
             <div>
 
-                <form action="post">
+                <form>
                     <label htmlFor="name">What's your name?
                     <input type="text" name="name" onChange={(e) => this.handleChange(e)} />
                     </label>
@@ -46,7 +53,7 @@ class Form extends React.Component {
                             <option>Ice</option>
                         </select>
                     </label>
-                    <button type="submit">Submit</button>
+                    <button type="submit" onClick={this.submitButton}>Submit</button>
                 </form>
 
 

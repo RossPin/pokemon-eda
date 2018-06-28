@@ -1,14 +1,14 @@
 import React from 'react'
+
 import Form from './Form'
 
-const App = (props) => {
-
+const Home = (props) => {
     return (
         <div>
             <h1>Pokemon EDA</h1>
-            <Form />
+            <Form updateState={props.updateState} />
         </div>
     )
 }
 
-export default App
+export default Home
