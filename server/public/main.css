@@ -1,3 +1,21 @@
+@font-face { font-family: PokeFont; src: url('Pokemon-Hollow.ttf'); }
+
+h1.title {
+	margin-top: 50px;
+	font-family: PokeFont;
+	font-size: 60px;
+}
+
+
+.has-content-centered {
+	margin: 0 auto;
+}
+
+.hero.is-fullheight {
+	background-image: url('/pokemonbg.jpg');
+	background-repeat: no-repeat;
+	background-position: right top;
+}
 
 @media all {
 
