@@ -1,10 +1,31 @@
 import React from 'react'
 
-import { getTypes, getByType } from '../apiClient'
+import {getTypes, getByType} from '../apiClient'
+import {capitalise} from '../functions'
 
 class Results extends React.Component {
     constructor(props) {
         super(props)
+        this.state = {
+            userName: this.props.name,
+            type: this.props.type,
+            name: '',
+            height: '',
+            weight: '',
+            abilities: '',
+            image: ''
+        }
+        this.updateData = this.updateData.bind(this)
+    }
+
+    componentDidMount(){              
+        getByType(this.state.type).then(this.updateData)        
+    }
+
+    updateData(data){
+        let {name, height, weight, sprites} = data
+        const image = sprites.front_default
+        this.setState({name, height, weight, image}) 
     }
 
     render() {
@@ -34,7 +55,7 @@ class Results extends React.Component {
                             <div id="buttontopPicture2"></div>
                         </div>
                         <div id="picture">
-                            <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/200653/psykokwak.gif" alt="psykokwak" height="170" />
+                            <img src={this.state.image} height="170" />
                         </div>
                         <div id="buttonbottomPicture"></div>
                         <div id="speakers">
@@ -67,12 +88,11 @@ class Results extends React.Component {
                 </div>
                 <div id="right">
                     <div id="stats">
-                        <strong>Name :</strong> Psyduck<br />
-                        <strong>Type :</strong> Water<br />
-                        <strong>Height :</strong> 2'072''<br />
-                        <strong>Weight :</strong> 43.2 lbs.<br /><br />
-                        <strong>The duck Pokemon</strong><br />
-                        Uses mysterious powers to perform various attacks.
+                        <strong>Name :</strong> {capitalise(this.state.userName)}<br />
+                        <strong>Pokemon :</strong> {capitalise(this.state.name)}<br />
+                        <strong>Type :</strong> {this.state.type}<br />
+                        <strong>Height :</strong> {this.state.height/10} m<br />
+                        <strong>Weight :</strong> {this.state.weight/10} kg<br /><br />
                     </div>
                     <div id="blueButtons1">
                         <div className="blueButton"></div>
@@ -88,10 +108,7 @@ class Results extends React.Component {
                         <div className="blueButton"></div>
                         <div className="blueButton"></div>
                     </div>
-                    <div id="miniButtonGlass4"></div>
-                    <div id="miniButtonGlass5"></div>
-                    <div id="barbutton3"></div>
-                    <div id="barbutton4"></div>
+                   
                     <div id="yellowBox1"></div>
                     <div id="yellowBox2"></div>
                     <div id="bg_curve1_right"></div>

@@ -10,6 +10,7 @@ export function getTypes () {
 }
 
 export function getByType (type) {
+  type = type.toLowerCase()
   return request.get(rootUrl + '/types/'+type)
     .then(res => {
       return res.body
