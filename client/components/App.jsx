@@ -1,34 +1,36 @@
 import React from 'react'
 
-import {getFruits} from '../apiClient'
+import Home from './Home'
 
 class App extends React.Component {
-  constructor (props) {
+
+  constructor(props) {
     super(props)
+
     this.state = {
-      fruits: []
+      name: '',
+      type: '',
+      userSubmitted: false
     }
+
+    this.updateState = this.updateState.bind(this)
+
   }
 
-  componentDidMount () {
-    getFruits()
-      .then(fruits => {
-        this.setState({fruits})
-      })
+  updateState(state) {
+    console.log(state)
+    this.setState(state)
   }
 
-  render () {
+  render() {
     return (
-      <div className='app'>
-        <h1>Fullstack Boilerplate</h1>
-        <ul>
-          {this.state.fruits.map(fruit => (
-            <li key={fruit}>{fruit}</li>
-          ))}
-        </ul>
+      <div>
+        <Home updateState={this.updateState} />
       </div>
     )
   }
+
 }
+
 
 export default App
