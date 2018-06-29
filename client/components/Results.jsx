@@ -1,5 +1,5 @@
 import React from 'react'
-import { RingLoader } from 'react-spinners';
+import { CircleLoader } from 'react-spinners';
 
 import {getTypes, getByType} from '../apiClient'
 import {capitalise} from '../functions'
@@ -21,7 +21,6 @@ class Results extends React.Component {
     }
 
     componentDidMount(){   
-        console.log(this.state.hasLoaded)           
         getByType(this.state.type).then(this.updateData)        
     }
 
@@ -32,7 +31,6 @@ class Results extends React.Component {
         this.setState({
             loading: false
         })
-        console.log(this.state.loading)
     }
 
     render() {
@@ -63,7 +61,7 @@ class Results extends React.Component {
                         </div>
 
                         <div id="picture">
-                        {<RingLoader loading={this.state.loading}/>}
+                        {<CircleLoader loading={this.state.loading}/>}
                         {!this.state.loading && <img src={this.state.image} height="170" /> }
                         </div>
 
