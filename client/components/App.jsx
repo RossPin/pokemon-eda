@@ -34,7 +34,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="hero is-primary is-fullheight has-text-centered">
         {!this.state.userSubmitted && <Home updateState={this.updateState} />}
         {this.state.userSubmitted && <Results {...this.state} goBack={this.goBack}/>}
       </div>
