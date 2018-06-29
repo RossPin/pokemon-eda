@@ -109,7 +109,7 @@ class Results extends React.Component {
                         <div className="blueButton"></div>
                     </div>
                    
-                    <div id="yellowBox1"></div>
+                    <div id="yellowBox1" onClick={this.props.goBack}>BACK</div>
                     <div id="yellowBox2"></div>
                     <div id="bg_curve1_right"></div>
                     <div id="bg_curve2_right"></div>
