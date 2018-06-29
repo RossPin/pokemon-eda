@@ -307,12 +307,22 @@ h1.title {
 		-webkit-border-radius: 15px;
 		-moz-border-radius: 15px;
 		-o-border-radius: 15px;
+		text-align: center;
+	}
+
+	.loader123 {
+		width: 100%;
+		height: 100%;
+		margin: 0 auto;
+		text-align: center;
 	}
 
 	div#picture img
 	{
 		display: block;
 		margin: 0 auto;
+		height: 100%;
+		width: 100%;
 	}
 
 	div#topPicture
@@ -733,13 +743,13 @@ h1.title {
 
 	div#stats
 	{
+		font-family: Courier, monospace;
 		height: 130px;
 		width: 280px;
 		padding: 10px;
 		background-color: #30da0c;
 		z-index: 1;
 		font-size: 13px;
-		font-family: arial, sans-serif;
 
 		position: absolute;
 		top: 130px;
@@ -906,6 +916,12 @@ h1.title {
 
 	div#yellowBox1
 	{
+		text-align: center;
+		line-height: 70px;
+
+		font-family: 'Courier New', Courier, monospace;
+		font-weight: bold;
+
 		width: 140px;
 		height: 70px;
 		z-index: 1;

@@ -1,8 +1,8 @@
 import React from 'react'
-import { CircleLoader } from 'react-spinners';
+import { MoonLoader } from 'react-spinners';
 
-import {getTypes, getByType} from '../apiClient'
-import {capitalise} from '../functions'
+import { getTypes, getByType } from '../apiClient'
+import { capitalise } from '../functions'
 
 class Results extends React.Component {
     constructor(props) {
@@ -20,17 +20,20 @@ class Results extends React.Component {
         this.updateData = this.updateData.bind(this)
     }
 
-    componentDidMount(){   
-        getByType(this.state.type).then(this.updateData)        
+    componentDidMount() {
+        console.log(this.state.loading)
+        getByType(this.state.type).then(this.updateData)
     }
 
-    updateData(data){
-        let {name, height, weight, sprites} = data
+    updateData(data) {
+        let { name, height, weight, sprites } = data
         const image = sprites.front_default
-        this.setState({name, height, weight, image}) 
+        this.setState({ name, height, weight, image })
         this.setState({
             loading: false
         })
+
+        console.log(this.state.loading)
     }
 
     render() {
@@ -61,8 +64,15 @@ class Results extends React.Component {
                         </div>
 
                         <div id="picture">
-                        {<CircleLoader loading={this.state.loading}/>}
-                        {!this.state.loading && <img src={this.state.image} height="170" /> }
+                        
+                            {this.state.loading && 
+                            <div className="loader123">
+                                <MoonLoader size={100} loading={this.state.loading} />
+                            </div>
+                            }
+
+                            {!this.state.loading && <img src={this.state.image} height="170" />}
+                        
                         </div>
 
                         <div id="buttonbottomPicture"></div>
@@ -99,8 +109,8 @@ class Results extends React.Component {
                         <strong>Name :</strong> {capitalise(this.state.userName)}<br />
                         <strong>Pokemon :</strong> {capitalise(this.state.name)}<br />
                         <strong>Type :</strong> {this.state.type}<br />
-                        <strong>Height :</strong> {this.state.height/10} m<br />
-                        <strong>Weight :</strong> {this.state.weight/10} kg<br /><br />
+                        <strong>Height :</strong> {this.state.height / 10} m<br />
+                        <strong>Weight :</strong> {this.state.weight / 10} kg<br /><br />
                     </div>
                     <div id="blueButtons1">
                         <div className="blueButton"></div>
@@ -116,8 +126,8 @@ class Results extends React.Component {
                         <div className="blueButton"></div>
                         <div className="blueButton"></div>
                     </div>
-                   
-                    <div id="yellowBox1" onClick={this.props.goBack}>BACK</div>
+
+                    <div id="yellowBox1" class="button" onClick={this.props.goBack}>BACK</div>
                     <div id="yellowBox2"></div>
                     <div id="bg_curve1_right"></div>
                     <div id="bg_curve2_right"></div>
