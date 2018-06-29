@@ -15,6 +15,7 @@ class App extends React.Component {
     }
 
     this.updateState = this.updateState.bind(this)
+    this.goBack = this.goBack.bind(this)
 
   }
 
@@ -24,11 +25,18 @@ class App extends React.Component {
     this.setState(state)
   }
 
+  goBack() {
+    let {userSubmitted} = this.state
+    userSubmitted = false
+    this.setState({userSubmitted})
+
+  }
+
   render() {
     return (
       <div>
         {!this.state.userSubmitted && <Home updateState={this.updateState} />}
-        {this.state.userSubmitted && <Results {...this.state}/>}
+        {this.state.userSubmitted && <Results {...this.state} goBack={this.goBack}/>}
       </div>
     )
   }
