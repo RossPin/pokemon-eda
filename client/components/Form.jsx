@@ -23,8 +23,9 @@ class Form extends React.Component {
     submitButton(e) {
         e.preventDefault()
         this.props.updateState(this.state)
+        const openingSound = new Audio("openingSound.mp3")
+        openingSound.play()
     }
-
 
     render() {
         return (
