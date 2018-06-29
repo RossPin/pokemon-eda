@@ -1,4 +1,6 @@
 import React from 'react'
+import { getTypes } from '../apiClient'
+import { capitalise } from '../functions'
 
 class Form extends React.Component {
     constructor(props) {
@@ -6,12 +8,23 @@ class Form extends React.Component {
 
         this.state = {
             name: '',
-            type: 'Fire'
+            type: 'Fire',
+            types: []
         }
 
         this.handleChange = this.handleChange.bind(this)
         this.submitButton = this.submitButton.bind(this)
 
+    }
+
+    componentDidMount() {
+        getTypes()
+            .then(types => {
+                console.log(types)
+                this.setState({
+                    types
+                })
+            })
     }
 
 
@@ -41,27 +54,19 @@ class Form extends React.Component {
                         <div className="field">
                             <div className="control">
                                 <label>What type best defines you?</label>
-                                <br/>
+                                <br />
                                 <div className="select">
-                                <select className="select" name="type" onChange={(e) => this.handleChange(e)}>
-                                    <option>Fire</option>
-                                    <option>Water</option>
-                                    <option>Electric</option>
-                                    <option>Ground</option>
-                                    <option>Steel</option>
-                                    <option>Fighting</option>
-                                    <option>Dark</option>
-                                    <option>Psychic</option>
-                                    <option>Ghost</option>
-                                    <option>Normal</option>
-                                    <option>Grass</option>
-                                    <option>Dragon</option>
-                                    <option>Bug</option>
-                                    <option>Poison</option>
-                                    <option>Ice</option>
-                                </select>
+                                    <select className="select" name="type" onChange={(e) => this.handleChange(e)}>
+
+                                        {this.state.types.map((type, i) => {
+                                            return (
+                                                <option key={i}>{capitalise(type)}</option>
+                                            )
+                                        })}
+
+                                    </select>
                                 </div>
-                                <br/><hr/>
+                                <br /><hr />
                                 <button className="button" type="submit" onClick={this.submitButton}>Submit</button>
                             </div>
                         </div>

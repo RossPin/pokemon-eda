@@ -1,4 +1,5 @@
 import React from 'react'
+import { RingLoader } from 'react-spinners';
 
 import {getTypes, getByType} from '../apiClient'
 import {capitalise} from '../functions'
@@ -13,12 +14,14 @@ class Results extends React.Component {
             height: '',
             weight: '',
             abilities: '',
-            image: ''
+            image: '',
+            loading: true
         }
         this.updateData = this.updateData.bind(this)
     }
 
-    componentDidMount(){              
+    componentDidMount(){   
+        console.log(this.state.hasLoaded)           
         getByType(this.state.type).then(this.updateData)        
     }
 
@@ -26,6 +29,10 @@ class Results extends React.Component {
         let {name, height, weight, sprites} = data
         const image = sprites.front_default
         this.setState({name, height, weight, image}) 
+        this.setState({
+            loading: false
+        })
+        console.log(this.state.loading)
     }
 
     render() {
@@ -54,9 +61,12 @@ class Results extends React.Component {
                             <div id="buttontopPicture1"></div>
                             <div id="buttontopPicture2"></div>
                         </div>
+
                         <div id="picture">
-                            <img src={this.state.image} height="170" />
+                        {<RingLoader loading={this.state.loading}/>}
+                        {!this.state.loading && <img src={this.state.image} height="170" /> }
                         </div>
+
                         <div id="buttonbottomPicture"></div>
                         <div id="speakers">
                             <div className="sp"></div>
