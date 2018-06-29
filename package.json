@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node server & yarn build",
     "dev": "nodemon server & yarn build --watch",
     "build": "webpack --config client/webpack.config.js",
     "test": "jest"
@@ -21,7 +22,8 @@
     ]
   },
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.16.3",
+    "heroku": "^7.5.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
